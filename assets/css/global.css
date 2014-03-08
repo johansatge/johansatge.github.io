@@ -220,8 +220,8 @@ ul {
     background: url(images/social_github.png) no-repeat center center #000000;
 }
 
-.links .item span.flickr {
-    background: url(images/social_flickr.png) no-repeat center center #000000;
+.links .item span.px500 {
+    background: url(images/social_500px.png) no-repeat center center #000000;
 }
 
 .links .item span.linkedin {
