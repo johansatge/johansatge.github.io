@@ -1,8 +1,5 @@
-johansatge.github.io
-====================
-
-## Presentation
+# johansatge.github.io
 
 My personal website.
 
-**[Take a look](http://johansatge.github.io/)**
+**[Project page](http://johansatge.github.io/)**
