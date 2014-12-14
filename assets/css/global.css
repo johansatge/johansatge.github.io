@@ -104,6 +104,22 @@ p a:hover
     color : #d63c23;
 }
 
+p a i
+{
+    color      : #ffffff;
+    position   : absolute;
+    opacity    : 0;
+    top        : 4px;
+    left       : -34px;
+    transition : all 200ms;
+}
+
+p a:hover i
+{
+    left    : -24px;
+    opacity : 1;
+}
+
 .js-step
 {
     opacity : 0;
