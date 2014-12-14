@@ -96,6 +96,7 @@ p a, p a:visited
     position        : relative;
     color           : #f5f5f5;
     text-decoration : none;
+    transition      : color 200ms;
 }
 
 p a:hover
