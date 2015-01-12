@@ -8,7 +8,7 @@ var Site = (function()
     {
         $('.bg').animate({opacity: 1}, 1000);
         var steps = $('.js-step').get();
-        var delay = 0;
+        var delay = 800;
         for(var index in steps)
         {
             $(steps[index]).delay(delay).animate({opacity: 1, left: 0}, 400);
