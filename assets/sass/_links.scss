@@ -1,0 +1,71 @@
+ul
+{
+    list-style-type : none;
+
+    li
+    {
+        margin      : 0 0 10px 0;
+        font-size   : 1.000em;
+        font-weight : 800;
+
+        i
+        {
+            display    : block;
+            display    : none !important;
+            color      : #ffffff;
+            position   : absolute;
+            font-size  : 42px;
+            top        : 3px;
+            left       : -50px;
+            width      : 40px;
+            text-align : right;
+        }
+
+        a,
+        a:visited
+        {
+            position        : relative;
+            text-decoration : none;
+
+            &:after
+            {
+                content    : ' ';
+                display    : block;
+                position   : absolute;
+                opacity    : 0;
+                bottom     : -10px;
+                width      : 100%;
+                height     : 3px;
+                transition : bottom 150ms, opacity 150ms;
+            }
+
+            &:hover:after
+            {
+                bottom  : -2px;
+                opacity : 1;
+            }
+        }
+
+        $colors : #ff1937, #ffc09f, #000000, #55acee, #1acbfc, #d01e15, #1683bc, #4964a1, #131418, #98604c, #00aff0;
+        $links : resume, github, 500px, twitter, roundme, pinterest, linkedin, facebook, behance, instagram, skype;
+
+        @for $index from 1 through length($colors) {
+            &.color-#{nth($links, $index)} a
+            {
+                color : nth($colors, $index);
+
+                &:after
+                {
+                    background : nth($colors, $index);
+                }
+            }
+        }
+
+        span
+        {
+            margin : 0 0 0 20px;
+            color  : #dad9d6;
+        }
+
+    }
+}
