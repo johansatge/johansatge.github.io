@@ -14,7 +14,7 @@
             scale_y: 1.2
         },
         colors: {
-            grey: 0x999999,
+            white: 0xffffff,
             black: 0x000000,
             beige: 0xe3ded0
         }
@@ -41,7 +41,7 @@
         cam = new THREE.PerspectiveCamera(45, element.offsetWidth / element.offsetHeight, 1, 2000);
         cam.position.z = 10000;
 
-        scene.add(new THREE.AmbientLight(settings.colors.grey));
+        scene.add(new THREE.AmbientLight(settings.colors.white));
         var directional = new THREE.DirectionalLight(settings.colors.beige, 0.5);
         directional.position.set(0, 0, 1);
         scene.add(directional);
@@ -55,7 +55,7 @@
 
         if (typeof window.WebGLRenderingContext !== 'undefined' && window.WebGLRenderingContext)
         {
-            renderer = new THREE.WebGLRenderer({antialias: true});
+            renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
         }
         else
         {
