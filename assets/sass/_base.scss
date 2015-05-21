@@ -5,14 +5,9 @@ html, body, div, ul, li, p, img, a, h1, h2
     border  : 0;
 }
 
-html
-{
-    height : 100%;
-}
-
 body
 {
-    background  : #f3f2ef url(images/bg.jpg) no-repeat right bottom;
+    background  : #f3f2ef;
     font-family : "Raleway", Arial, sans-serif;
     font-size   : 26px;
 
@@ -25,8 +20,20 @@ body
     }
 }
 
+.animation
+{
+    z-index  : 1;
+    position : absolute;
+    top      : 0;
+    left     : 50px;
+    width    : 200px;
+    height   : 200px;
+    margin   : 30px 0 20px 0;
+}
+
 .content
 {
-
-    padding : 50px 0 0 50px;
+    z-index  : 2;
+    position : relative;
+    margin   : 230px 0 0 50px;
 }

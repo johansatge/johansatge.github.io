@@ -18,6 +18,7 @@
         <meta name="viewport" content="width=device-width">
 	</head>
 	<body>
+        <div class="animation js-animation"></div>
         <div class="content">
             <h1>Johan Satgé</h1>
             <h2>Full-stack web developer</h2>
@@ -25,7 +26,7 @@
                 <li class="color-resume">
                     <i class="fa fa-user"></i>
                     <a target="_blank" href="assets/pdf/johan-satge.pdf">Resume</a>
-                    <span>Path & references</span>
+                    <span>Jobs & references</span>
                 </li>
                 <li class="color-github">
                     <i class="fa fa-github-alt"></i>
@@ -35,7 +36,7 @@
                 <li class="color-500px">
                     <i class="fa fa-camera"></i>
                     <a target="_blank" href="http://500px.com/johansatge">500px</a>
-                    <span>Pictures</span>
+                    <span>Pictures collection</span>
                 </li>
                 <li class="color-twitter">
                     <i class="fa fa-twitter"></i>
@@ -74,10 +75,11 @@
                 </li>
             </ul>
         </div>
-	    <script src="assets/js/libs/jquery.min.js"></script>
-		<script src="assets/js/site.js"></script>
+        <script type="text/javascript" src="assets/js/libs/three.min.js"></script>
+        <script type="text/javascript" src="assets/js/libs/objloader.js"></script>
+        <script src="assets/js/site.js"></script>
         <script>
-            Site.init();
+            Site.init3D(document.querySelector('.js-animation'));
         </script>
 	</body>
 </html>
