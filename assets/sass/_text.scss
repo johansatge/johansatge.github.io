@@ -1,0 +1,76 @@
+h1
+{
+    font-size   : 1.692em;
+    color       : #242424;
+    font-weight : 800;
+}
+
+h2
+{
+    font-size   : 1.231em;
+    color       : #242424;
+    margin      : 0 0 40px 0;
+    font-weight : 700;
+
+    @media screen and (max-width : 800px) {
+        margin : 0 0 30px 0;
+    }
+
+    @media screen and (max-width : 500px) {
+        margin : 0 0 20px 0;
+    }
+}
+
+p
+{
+    font-size   : 1.000em;
+    font-weight : 700;
+    color       : #cdccc9;
+    margin      : 0 0 20px 0;
+    line-height : 1.35em;
+
+    a,
+    a:visited
+    {
+        display         : inline-block;
+        position        : relative;
+        text-decoration : none;
+
+        &:after
+        {
+            content    : ' ';
+            display    : block;
+            position   : absolute;
+            opacity    : 0;
+            bottom     : -6px;
+            width      : 100%;
+            height     : 3px;
+            transition : bottom 150ms, opacity 150ms;
+        }
+
+        &:hover:after
+        {
+            bottom  : 0;
+            opacity : 1;
+
+            @media screen and (max-width : 500px) {
+                height : 2px;
+            }
+        }
+    }
+
+    $colors : #ff1937, #ffc09f, #000000, #55acee, #1acbfc, #d01e15, #1683bc, #4964a1, #131418, #98604c, #00aff0;
+    $links : resume, github, 500px, twitter, roundme, pinterest, linkedin, facebook, behance, instagram, skype;
+
+    @for $index from 1 through length($colors) {
+        .color-#{nth($links, $index)}
+        {
+            color : nth($colors, $index);
+
+            &:after
+            {
+                background : nth($colors, $index);
+            }
+        }
+    }
+}

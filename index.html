@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
 	    <title>Johan Satgé | Full-stack web developer</title>
-        <link href="//fonts.googleapis.com/css?family=Raleway:500,700,800" rel="stylesheet" type="text/css">
+        <link href="//fonts.googleapis.com/css?family=Raleway:700,800" rel="stylesheet" type="text/css">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="assets/css/global.css" rel="stylesheet" type="text/css">
         <link rel="icon" type="image/png" href="assets/css/images/favicon.png?v1">
@@ -19,67 +19,35 @@
 	</head>
 	<body>
         <div class="animation js-animation"></div>
-        <div class="content">
+        <div class="content js-content">
             <h1>Johan Satgé</h1>
             <h2>Full-stack web developer</h2>
-            <ul>
-                <li class="color-resume">
-                    <i class="fa fa-user"></i>
-                    <a target="_blank" href="assets/pdf/johan-satge.pdf">Resume</a>
-                    <span>Positions &amp; references</span>
-                </li>
-                <li class="color-github">
-                    <i class="fa fa-github-alt"></i>
-                    <a class="js-step github" target="_blank" href="https://github.com/johansatge">Github</a>
-                    <span>Open-source projects</span>
-                </li>
-                <li class="color-500px">
-                    <i class="fa fa-camera"></i>
-                    <a target="_blank" href="http://500px.com/johansatge">500px</a>
-                    <span>Pictures collection</span>
-                </li>
-                <li class="color-twitter">
-                    <i class="fa fa-twitter"></i>
-                    <a target="_blank" href="https://twitter.com/johan_satge">Twitter</a>
-                    <span>Development stuff</span>
-                </li>
-                <li class="color-roundme">
-                    <i class="fa fa-globe"></i>
-                    <a target="_blank" href="http://round.me/@johansatge">Roundme</a>
-                    <span>360 panoramas</span>
-                </li>
-                <li class="color-pinterest">
-                    <i class="fa fa-pinterest"></i>
-                    <a target="_blank" href="http://www.pinterest.com/johansatge">Pinterest</a>
-                    <span>Inspiration base</span>
-                </li>
-                <li class="color-linkedin">
-                    <i class="fa fa-linkedin"></i>
-                    <a target="_blank" href="http://fr.linkedin.com/in/jsatge">Linkedin</a>
-                    <span>Professional network</span>
-                </li>
-                <li class="color-behance">
-                    <i class="fa fa-behance"></i>
-                    <a target="_blank" href="http://www.behance.net/johan-satge">Behance</a>
-                    <span>3D works</span>
-                </li>
-                <li class="color-instagram">
-                    <i class="fa fa-instagram"></i>
-                    <a target="_blank" href="http://instagram.com/johansatge">Instagram</a>
-                    <span>Random doodles</span>
-                </li>
-                <li class="color-skype">
-                    <i class="fa fa-skype"></i>
-                    <a target="_blank" href="skype:johan.satge">Skype</a>
-                    <span>Contact me</span>
-                </li>
-            </ul>
+            <p>
+                You can download my
+                <a class="color-resume" target="_blank" href="assets/pdf/johan-satge.pdf">resume</a> with my positions and references,
+                and browse my open-source projects on <a class="color-github" target="_blank" href="https://github.com/johansatge">Github</a>.
+            </p>
+            <p>
+                I also post photos on <a class="color-500px" target="_blank" href="http://500px.com/johansatge">500px</a>,
+                panoramas on <a class="color-roundme" target="_blank" href="http://round.me/@johansatge">Roundme</a>,
+                3D stuff on <a class="color-behance" target="_blank" href="http://www.behance.net/johan-satge">Behance</a>,
+                and random doodles on <a class="color-instagram" target="_blank" href="http://instagram.com/johansatge">Instagram</a>.
+                <br>
+                I like looking for inspiration on
+                <a class="color-pinterest" target="_blank" href="http://www.pinterest.com/johansatge">Pinterest</a>.
+            </p>
+            <p>
+                Feel free to contact me on <a class="color-linkedin" target="_blank" href="http://fr.linkedin.com/in/jsatge">Linkedin</a>,
+                <a class="color-twitter" target="_blank" href="https://twitter.com/johan_satge">Twitter</a>
+                or <a class="color-skype" target="_blank" href="skype:johan.satge">Skype</a> !
+            </p>
         </div>
         <script type="text/javascript" src="assets/js/libs/three.min.js"></script>
         <script type="text/javascript" src="assets/js/libs/objloader.js"></script>
         <script src="assets/js/site.js"></script>
         <script>
             Site.init3D(document.querySelector('.js-animation'));
+            Site.initPosition();
         </script>
 	</body>
 </html>

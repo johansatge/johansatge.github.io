@@ -11,7 +11,8 @@
             move_delay: 20,
             intro_delay: 7,
             scale_x: 1.5,
-            scale_y: 1.2
+            scale_y: 1.2,
+            z: 400
         },
         colors: {
             white: 0xffffff,
@@ -28,6 +29,15 @@
     var mesh = null;
     var cam_x = 0;
     var cam_y = 0;
+
+    /**
+     * Inits position
+     */
+    site.initPosition = function()
+    {
+        window.addEventListener('resize', _onWindowResize);
+        _onWindowResize();
+    };
 
     /**
      * Inits
@@ -63,7 +73,15 @@
         }
         renderer.setSize(element.offsetWidth, element.offsetHeight);
         element.appendChild(renderer.domElement);
-        element.addEventListener('mousemove', _onMouseMove);
+        document.addEventListener('mousemove', _onMouseMove);
+    };
+
+    /**
+     * Resizes the window
+     */
+    var _onWindowResize = function()
+    {
+        renderer.setSize(element.offsetWidth, element.offsetHeight);
     };
 
     /**
@@ -91,8 +109,8 @@
      */
     var _onMouseMove = function(evt)
     {
-        cam_x = (evt.offsetX - (element.offsetWidth / 2)) / settings.animations.scale_x;
-        cam_y = -(evt.offsetY - (element.offsetHeight / 2)) / settings.animations.scale_y;
+        cam_x = (evt.clientX - (window.innerWidth / 2)) / settings.animations.scale_x;
+        cam_y = -(evt.clientY - (window.innerHeight / 2)) / settings.animations.scale_y;
     };
 
     /**
@@ -105,7 +123,7 @@
         var prev_y = cam.position.y;
         cam.position.y += (cam_y - cam.position.y) / settings.animations.move_delay;
         var prev_z = cam.position.z;
-        cam.position.z += (400 - cam.position.z) / settings.animations.intro_delay;
+        cam.position.z += (settings.animations.z - cam.position.z) / settings.animations.intro_delay;
         if (_r(prev_x) !== _r(cam.position.x) || _r(prev_y) !== _r(cam.position.y) || _r(prev_z) !== _r(cam.position.z) || first_render)
         {
             cam.lookAt(scene.position);
