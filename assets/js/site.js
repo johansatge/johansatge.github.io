@@ -17,7 +17,6 @@
         colors: {
             white: 0xffffff,
             black: 0x000000,
-            beige: 0xe3ded0
         }
     };
     var element = null;
@@ -57,8 +56,8 @@
         scene.add(directional);
 
         materials = {
-            atoms: new THREE.MeshBasicMaterial({color: settings.colors.black, wireframe: false}),
-            center: new THREE.MeshLambertMaterial({color: settings.colors.beige, wireframe: false})
+            atoms: new THREE.MeshBasicMaterial({color: settings.colors.white, wireframe: false}),
+            center: new THREE.MeshLambertMaterial({color: settings.colors.black, wireframe: false, transparent: true, opacity: 0.75})
         };
 
         new THREE.OBJLoader(new THREE.LoadingManager()).load(settings.mesh, _onMeshLoaded);
