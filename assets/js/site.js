@@ -1,147 +1,101 @@
-(function(window)
+(function(window, document)
 {
 
     'use strict';
 
     var site = {};
-
-    var settings = {
-        mesh: 'assets/obj/abstract.obj',
-        animations: {
-            move_delay: 20,
-            intro_delay: 7,
-            scale_x: 1.5,
-            scale_y: 1.2,
-            z: 400
-        },
-        colors: {
-            white: 0xffffff,
-            black: 0x000000,
-            beige: 0xe3ded0
-        }
-    };
-    var element = null;
-    var cam = null;
-    var scene = null;
-    var renderer = null;
-    var materials = null;
-    var first_render = true;
-    var mesh = null;
-    var cam_x = 0;
-    var cam_y = 0;
+    var backgroundNode = null;
+    var backgroundRatio = 0;
+    var backgroundMarginRatio = 1 / 10;
+    var backgroundDelay = 1;
+    var targetPositions = [];
 
     /**
-     * Inits position
+     * Inits background
      */
-    site.initPosition = function()
+    site.initBackground = function()
     {
+        backgroundNode = document.querySelector('.js-background');
+        backgroundRatio = parseInt(backgroundNode.getAttribute('data-width')) / parseInt(backgroundNode.getAttribute('data-height'));
+        window.addEventListener('mousemove', _onMouseMove);
         window.addEventListener('resize', _onWindowResize);
         _onWindowResize();
+        _animate();
     };
 
     /**
-     * Inits
-     * @param elm
+     * Background animation
      */
-    site.init3D = function(elm)
+    var _animate = function()
     {
-        element = elm;
-        scene = new THREE.Scene();
-
-        cam = new THREE.PerspectiveCamera(45, element.offsetWidth / element.offsetHeight, 1, 2000);
-        cam.position.z = 10000;
-
-        scene.add(new THREE.AmbientLight(settings.colors.white));
-        var directional = new THREE.DirectionalLight(settings.colors.beige, 0.5);
-        directional.position.set(0, 0, 1);
-        scene.add(directional);
-
-        materials = {
-            atoms: new THREE.MeshBasicMaterial({color: settings.colors.black, wireframe: false}),
-            center: new THREE.MeshLambertMaterial({color: settings.colors.beige, wireframe: false})
-        };
-
-        new THREE.OBJLoader(new THREE.LoadingManager()).load(settings.mesh, _onMeshLoaded);
-
-        if (typeof window.WebGLRenderingContext !== 'undefined' && window.WebGLRenderingContext)
+        var images = backgroundNode.querySelectorAll('img');
+        for (var index = 0; index < targetPositions.length; index += 1)
         {
-            renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
+            var image_x = images[index].style.left.length > 0 ? parseInt(images[index].style.left) : 0;
+            var image_y = images[index].style.top.length > 0 ? parseInt(images[index].style.top) : 0;
+            images[index].style.left = (image_x + ((targetPositions[index].x - image_x) / backgroundDelay)) + 'px';
+            images[index].style.top = (image_y + ((targetPositions[index].y - image_y) / backgroundDelay)) + 'px';
         }
-        else
-        {
-            renderer = new THREE.CanvasRenderer({});
-        }
-        renderer.setSize(element.offsetWidth, element.offsetHeight);
-        element.appendChild(renderer.domElement);
-        document.addEventListener('mousemove', _onMouseMove);
+        requestAnimationFrame(_animate);
     };
 
     /**
-     * Resizes the window
-     */
-    var _onWindowResize = function()
-    {
-        renderer.setSize(element.offsetWidth, element.offsetHeight);
-    };
-
-    /**
-     * Inits 3D when the mesh has been loaded
-     * @param m
-     */
-    var _onMeshLoaded = function(m)
-    {
-        mesh = m;
-        mesh.traverse(function(child)
-        {
-            if (child instanceof THREE.Mesh)
-            {
-                child.material = materials[child.name];
-            }
-        });
-        scene.add(mesh);
-        _render();
-    };
-
-    /**
-     * Updates the 3D camera on mouse move
+     * Updates background position on mousemove
      * @param evt
-     * @private
      */
     var _onMouseMove = function(evt)
     {
-        cam_x = (evt.clientX - (window.innerWidth / 2)) / settings.animations.scale_x;
-        cam_y = -(evt.clientY - (window.innerHeight / 2)) / settings.animations.scale_y;
+        _updateBackgroundPosition(evt.clientX, evt.clientY);
     };
 
     /**
-     * Renders a frame
+     * Updates the position of the background, depending on user input
+     * @param user_x
+     * @param user_y
      */
-    var _render = function()
+    var _updateBackgroundPosition = function(user_x, user_y)
     {
-        var prev_x = cam.position.x;
-        cam.position.x += (cam_x - cam.position.x) / settings.animations.move_delay;
-        var prev_y = cam.position.y;
-        cam.position.y += (cam_y - cam.position.y) / settings.animations.move_delay;
-        var prev_z = cam.position.z;
-        cam.position.z += (settings.animations.z - cam.position.z) / settings.animations.intro_delay;
-        if (_r(prev_x) !== _r(cam.position.x) || _r(prev_y) !== _r(cam.position.y) || _r(prev_z) !== _r(cam.position.z) || first_render)
+        var images = backgroundNode.querySelectorAll('img');
+        targetPositions = [];
+        for (var index = 0; index < images.length; index += 1)
         {
-            cam.lookAt(scene.position);
-            renderer.render(scene, cam);
-            first_render = false;
+            var max_x = -(images[index].offsetWidth - window.innerWidth);
+            var max_y = -(images[index].offsetHeight - window.innerHeight);
+            targetPositions.push({x: user_x / window.innerWidth * max_x, y: user_y / window.innerHeight * max_y});
         }
-        requestAnimationFrame(_render);
     };
 
     /**
-     * Rounds a coordinate
-     * @param number
+     * Updates background size on resize
      */
-    var _r = function(number)
+    var _onWindowResize = function()
     {
-        return Math.round(number * 100) / 100;
+        var win_width = window.innerWidth;
+        var win_height = window.innerHeight;
+        var target_width;
+        var target_height;
+        if (win_width / win_height > backgroundRatio)
+        {
+            target_width = win_width;
+            target_height = target_width / backgroundRatio;
+        }
+        else
+        {
+            target_height = win_height;
+            target_width = target_height * backgroundRatio;
+        }
+        var images = backgroundNode.querySelectorAll('img');
+        var original_margin = window.innerWidth * backgroundMarginRatio;
+        var margin = original_margin;
+        for (var index = 0; index < images.length; index += 1)
+        {
+            images[index].style.width = (target_width + margin) + 'px';
+            images[index].style.height = (target_height + (margin / backgroundRatio)) + 'px';
+            margin -= original_margin / images.length;
+        }
+        _updateBackgroundPosition(window.innerWidth / 2, window.innerHeight / 2);
     };
 
     window.Site = site;
 
-})(window);
+})(window, document);

@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
 	    <title>Johan Satgé | Full-stack web developer</title>
+        <link href="//fonts.googleapis.com/css?family=Bitter:400,700" rel="stylesheet" type="text/css">
         <link href="//fonts.googleapis.com/css?family=Raleway:700,800" rel="stylesheet" type="text/css">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="assets/css/global.css" rel="stylesheet" type="text/css">
@@ -18,7 +19,11 @@
         <meta name="viewport" content="width=device-width">
 	</head>
 	<body>
-        <div class="animation js-animation"></div>
+        <div class="background js-background" data-width="1200" data-height="1015">
+            <img src="assets/css/images/nb/sky.jpg">
+            <img src="assets/css/images/nb/mountain.png">
+            <img src="assets/css/images/nb/lake.png">
+        </div>
         <div class="content js-content">
             <h1>Johan Satgé</h1>
             <h2>Full-stack web developer</h2>
@@ -42,12 +47,9 @@
                 or <a class="color-skype" target="_blank" href="skype:johan.satge">Skype</a> !
             </p>
         </div>
-        <script type="text/javascript" src="assets/js/libs/three.min.js"></script>
-        <script type="text/javascript" src="assets/js/libs/objloader.js"></script>
         <script src="assets/js/site.js"></script>
         <script>
-            Site.init3D(document.querySelector('.js-animation'));
-            Site.initPosition();
+            Site.initBackground();
         </script>
 	</body>
 </html>
