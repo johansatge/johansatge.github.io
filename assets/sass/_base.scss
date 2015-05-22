@@ -7,34 +7,48 @@ html, body, div, ul, li, p, img, a, h1, h2
 
 body
 {
-    background : #000000;
-    overflow   : hidden;
+    background  : #f3f2ef;
+    text-shadow : 0 1px 0 rgba(255, 255, 255, 0.50);
 }
 
-.background
+.animation
 {
-    z-index  : 1;
-    position : absolute;
-    top      : 0;
-    left     : 0;
-    width    : 100%;
-    height   : 100%;
+    z-index  : 2;
+    position : relative;
+    margin   : -250px 0 -200px -100px;
+    width    : 700px;
+    height   : 700px;
+    opacity  : 0.1;
 
-    &:after
-    {
-        content    : ' ';
-        position   : absolute;
-        display    : block;
-        z-index    : 3;
-        width      : 100%;
-        height     : 100%;
-        background : #ffffff;
-        opacity    : 0.8;
+    @media screen and (max-width : 800px) {
+        margin : -300px 0 -180px -100px;
+        width  : 700px;
+        height : 700px;
     }
 
-    img
-    {
-        z-index  : 2;
-        position : absolute;
+    @media screen and (max-width : 500px) {
+        margin : -300px 0 -180px -100px;
+        width  : 700px;
+        height : 700px;
+    }
+}
+
+.content
+{
+    z-index     : 3;
+    position    : relative;
+    width       : 750px;
+    box-sizing  : border-box;
+    padding     : 0 50px 50px 50px;
+    font-size   : 26px;
+    font-family : "Raleway", Arial, sans-serif;
+
+    @media screen and (max-width : 800px) {
+        width     : 100%;
+        font-size : 22px;
+    }
+
+    @media screen and (max-width : 500px) {
+        font-size : 18px;
     }
 }
