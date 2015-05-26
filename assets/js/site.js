@@ -16,7 +16,7 @@
         },
         colors: {
             white: 0xffffff,
-            black: 0x000000,
+            black: 0x000000
         }
     };
     var element = null;
