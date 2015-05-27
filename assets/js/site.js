@@ -68,7 +68,7 @@
         }
         else
         {
-            renderer = new THREE.CanvasRenderer({});
+            renderer = new THREE.CanvasRenderer({antialias: true, alpha: true});
         }
         renderer.setSize(element.offsetWidth, element.offsetHeight);
         element.appendChild(renderer.domElement);
